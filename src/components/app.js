@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 
-export default class App extends Component {
+import { connect } from 'react-redux'
+import * as actions from '../actions';
+
+import { MuiThemeProvider } from 'material-ui';
+import Main from './Main'
+
+
+class App extends Component {
+
   render() {
     return (
-      <div>New Rimmel3</div>
+      <MuiThemeProvider>
+        <Main />
+        
+      </MuiThemeProvider>
     );
   }
 }
+
+export default connect((state => state), actions)(App)
