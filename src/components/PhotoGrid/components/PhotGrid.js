@@ -1,8 +1,5 @@
 import React, { Component }from 'react';
 
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
