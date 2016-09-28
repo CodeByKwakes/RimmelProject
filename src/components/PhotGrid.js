@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { Component }from 'react';
+
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
@@ -133,7 +137,7 @@ const tilesData = [
 
 
 class PhotoGrid extends React.Component {
-  render() {
+  /*render() {
     return (
       <div style={styles.root}>
         <Subheader>Photo List</Subheader>
@@ -155,7 +159,45 @@ class PhotoGrid extends React.Component {
         </GridList>
       </div>
     )
+  }*/
+componentWillMount() {
+    this.props.fetchPhotos();
+  }
+
+  renderPhoto({title, author, img}) {
+    return (
+      <GridTile
+        key={img}
+        title={title}
+        subtitle={<span>by <b>{author}</b></span>}
+        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+        >
+        <img src={img} />
+      </GridTile>
+    )
+  }
+
+  render() {
+    return (
+      <div style={styles.root}>
+        <Subheader>Photo List</Subheader>
+        <GridList
+          cellHeight={200}
+          style={styles.gridList}
+          >
+
+          {photos.map(this.renderPhoto) }
+        </GridList>
+      </div>
+    )
   }
 }
 
-export default PhotoGrid
+const mapStateToProps = (state) => {
+  return {
+    photos: state.photos
+  };
+};
+
+
+export default connect(mapStateToProps, actions)(PhotoGrid)

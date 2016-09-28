@@ -6,10 +6,11 @@ import Main from './Main'
 
 class App extends Component {
 
-  render() {
+  render(props) {
     return (
       <MuiThemeProvider>
         <Main />
+        {props.children}
       </MuiThemeProvider>
     );
   }

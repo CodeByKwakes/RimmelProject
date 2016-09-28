@@ -3,7 +3,7 @@ import Header from './Header'
 import PhotoGrid from './PhotGrid'
 
 class Main extends React.Component {
-  render() {
+  render(props) {
     return (
       <div>
         <Header />
