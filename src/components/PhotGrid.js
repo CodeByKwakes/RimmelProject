@@ -4,8 +4,6 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
-import * as actions from '../actions';
-
 const styles = {
   root: {
     display: 'flex',
@@ -20,7 +18,7 @@ const styles = {
   },
 };
 
-/*const tilesData = [
+const tilesData = [
   {
     img: 'https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e35/12552326_495932673919321_1443393332_n.jpg',
     title: 'Breakfast',
@@ -131,27 +129,10 @@ const styles = {
     title: "Where would you go and for how long, if you had location freedom? - Greg 🌎",
     author: "world_greg"
   },
-];*/
+];
 
 
 class PhotoGrid extends React.Component {
-
-  componentWillMount() {
-    this.props.fetchPosts();
-  }
-
-  renderPost({id, img, title, author}) {
-    return (
-<GridTile
-              key={id}
-              title={title}
-              subtitle={<span>by <b>{author}</b></span>}
-              actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-              >
-              <img src={img} />
-            </GridTile>
-    )
-  }
   render() {
     return (
       <div style={styles.root}>
@@ -161,7 +142,16 @@ class PhotoGrid extends React.Component {
           style={styles.gridList}
           >
 
-          {this.props.post.map(renderPost) }
+          {tilesData.map((tile) => (
+            <GridTile
+              key={tile.img}
+              title={tile.title}
+              subtitle={<span>by <b>{tile.author}</b></span>}
+              actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+              >
+              <img src={tile.img} />
+            </GridTile>
+          )) }
         </GridList>
       </div>
     )
